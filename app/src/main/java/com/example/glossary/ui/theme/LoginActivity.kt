@@ -5,7 +5,7 @@ import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.*
-import androidx.compose.material.*
+import androidx.compose.material3.*
 import androidx.compose.material3.TextField
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
@@ -19,7 +19,7 @@ import kotlinx.coroutines.launch
 import androidx.compose.material3.Button
 import androidx.compose.material3.Text
 import androidx.compose.ui.platform.LocalContext
-
+import kotlinx.coroutines.withContext
 
 
 class LoginActivity : ComponentActivity() {
@@ -51,7 +51,7 @@ fun LoginScreen(userDao: UserDao) {
             .padding(16.dp),
         verticalArrangement = Arrangement.Center
     ) {
-        TextField(
+        OutlinedTextField(
             value = username,
             onValueChange = { username = it },
             label = { Text("Username") },
@@ -60,7 +60,7 @@ fun LoginScreen(userDao: UserDao) {
 
         Spacer(modifier = Modifier.height(16.dp))
 
-        TextField(
+        OutlinedTextField(
             value = password,
             onValueChange = { password = it },
             label = { Text("Password") },
@@ -72,20 +72,23 @@ fun LoginScreen(userDao: UserDao) {
 
         Button(
             onClick = {
+                val capturedContext = context
                 CoroutineScope(Dispatchers.IO).launch {
                     val user = userDao.getUser(username, password)
-                    if (user != null) {
-                        Toast.makeText(
-                            LocalContext.current,
-                            "Login successful! Welcome ${user.username}",
-                            Toast.LENGTH_LONG
-                        ).show()
-                    } else {
-                        Toast.makeText(
-                            LocalContext.current,
-                            "Invalid username or password",
-                            Toast.LENGTH_LONG
-                        ).show()
+                    withContext(Dispatchers.Main) {
+                        if (user != null) {
+                            Toast.makeText(
+                                capturedContext,
+                                "Login successful! Welcome ${user.username}",
+                                Toast.LENGTH_LONG
+                            ).show()
+                        } else {
+                            Toast.makeText(
+                                capturedContext,
+                                "Invalid username or password",
+                                Toast.LENGTH_LONG
+                            ).show()
+                        }
                     }
                 }
             },
@@ -93,5 +96,6 @@ fun LoginScreen(userDao: UserDao) {
         ) {
             Text("Login")
         }
+
     }
 }

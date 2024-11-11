@@ -1,11 +1,11 @@
-package com.example.glossary.data.database
+package com.example.glossary.ui.theme.data.database
 
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import android.content.Context
-import com.example.glossary.data.dao.UserDao
-import com.example.glossary.data.entity.User
+import com.example.glossary.ui.theme.data.dao.UserDao
+import com.example.glossary.ui.theme.data.entity.User
 
 @Database(entities = [User::class], version = 1)
 abstract class AppDatabase : RoomDatabase() {
@@ -27,3 +27,4 @@ abstract class AppDatabase : RoomDatabase() {
         }
     }
 }
+
