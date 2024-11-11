@@ -1,9 +1,9 @@
-package com.example.glossary.ui.theme.data.dao
+package com.example.glossary.data.dao
 
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
-import com.example.glossary.ui.theme.data.entity.User
+import com.example.glossary.data.entity.User
 
 @Dao
 interface UserDao {
@@ -13,4 +13,3 @@ interface UserDao {
     @Query("SELECT * FROM users WHERE username = :username AND password = :password")
     suspend fun getUser(username: String, password: String): User?
 }
-

@@ -1,4 +1,4 @@
-package com.example.glossary.ui.theme.data.entity
+package com.example.glossary.data.entity
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey

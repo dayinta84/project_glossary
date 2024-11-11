@@ -66,9 +66,13 @@ dependencies {
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
+        implementation ("androidx.room:room-runtime:2.5.0")
+        kapt ("androidx.room:room-compiler:2.5.0")
+        implementation ("androidx.room:room-ktx:2.5.0")
+    implementation ("androidx.compose.ui:ui:1.5.0")
+    implementation ("androidx.compose.ui:ui-tooling:1.5.0")
+    implementation ("androidx.compose.material:material:1.5.0")
+    implementation ("androidx.lifecycle:lifecycle-runtime-ktx:2.6.0")
+    implementation ("androidx.activity:activity-compose:1.7.2")
 
-    // Room Database
-    val roomVersion = "2.5.0"
-    implementation("androidx.room:room-runtime:$roomVersion")
-    kapt("androidx.room:room-compiler:$roomVersion")
 }
